@@ -3,6 +3,9 @@
 {% block content %}
 
     <h1 class="text-center">Sign in</h1>
+    <div class="alert alert-info">
+        Новый пользователь? <a href="{{ url_for('register') }}">Зарегистрируйтесь!</a>
+    </div>
 
     <form class="form" action="" method="post" novalidate>
         {{ form.hidden_tag() }}  <!-- вшиваю secret key в форму, чтобы сайт знал, откуда пришли данные -->
