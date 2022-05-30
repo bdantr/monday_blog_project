@@ -21,7 +21,7 @@ def login():
         return redirect(url_for('main_page'))
     form = LoginForm()
     if form.validate_on_submit():  # если форма отправляется
-        user = User.query.filter_by(username=form.username.data)  # пытаюсь найти пользователя в БД по логину
+        user = User.query.filter_by(username=form.username.data).first()  # пытаюсь найти пользователя в БД по логину
         if user is None or not user.check_password(form.password.data):
             # если пользователь не найден в БД или пароль не совпал
             return redirect(url_for('login'))  # вернуть пользователя на страницу входа
