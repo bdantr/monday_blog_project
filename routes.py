@@ -1,6 +1,6 @@
 from flask import render_template, flash, redirect, url_for
 from flask_login import current_user, login_user, logout_user, login_required
-from app import app, login
+from app import app, login, db
 from forms import LoginForm, RegistrationForm
 from models import User
 
@@ -41,6 +41,15 @@ def register():
     if current_user.is_authenticated:  # если пользователь вошел
         return redirect(url_for('index'))  # перенаправим на главную
     form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(
+            username=form.username.data,
+            email=form.email.data
+        )
+        user.set_password(form.password.data)
+        db.session.add(user)  # добавить пользователя в БД
+        db.session.commit()  # сохранить пользователя в БД
+        return redirect(url_for('login'))  # перенаправить на страницу входа
     return render_template('register.html', form=form)
 
 
