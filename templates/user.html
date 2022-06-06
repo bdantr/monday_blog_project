@@ -3,6 +3,8 @@
 {% block content %}
     <img src="{{ user.avatar(128) }}" alt="{{ user.username }}-avatar">
     <h1>User: {{ user.username }}</h1>
+    {% if user.about %}<p>{{ user.about }}</p>{% endif %}
+    {% if user.last_seen %}<p>{{ user.last_seen }}</p>{% endif %}
     <hr>
 
     {% for post in posts %}

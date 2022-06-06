@@ -12,6 +12,8 @@ class User(UserMixin, db.Model):
     email = db.Column(db.String(120), unique=True, index=True)
     password = db.Column(db.String(256))
     posts = db.relationship('Post', backref='author', lazy='dynamic')
+    about = db.Column(db.String(140))
+    last_seen = db.Column(db.DateTime, default=datetime.utcnow)
     # связь(Таблица_Posts, обращение_author, динамический_метод_загрузки)
 
     def set_password(self, password):
