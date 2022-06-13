@@ -1,8 +1,8 @@
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 from app import app, login, db
-from forms import LoginForm, RegistrationForm, EditProfileForm
-from models import User
+from forms import LoginForm, RegistrationForm, EditProfileForm, PostForm
+from models import User, Post
 from datetime import datetime
 
 
@@ -11,9 +11,16 @@ def load_user(id):
     return User.query.get(int(id))  # достает пользователя из базы данных и запоминает его
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def main_page():
-    return render_template('index.html')
+    form = PostForm()
+    if form.validate_on_submit():
+        post = Post(body=form.post.data, author=current_user)
+        db.session.add(post)
+        db.session.commit()
+        return redirect(url_for('main_page'))
+    posts = Post.query.all()
+    return render_template('index.html', form=form, posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])

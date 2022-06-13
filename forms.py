@@ -36,3 +36,10 @@ class EditProfileForm(FlaskForm):
     username = StringField('Имя пользователя: ', validators=[DataRequired()])
     about_me = TextAreaField('Обо мне', validators=[Length(min=0, max=140)])
     submit = SubmitField('Обновить')
+
+
+class PostForm(FlaskForm):
+    post = TextAreaField('Напиши что-то: ', validators=[
+        DataRequired(), Length(min=1, max=140)
+    ])
+    submit = SubmitField('Запостить')
