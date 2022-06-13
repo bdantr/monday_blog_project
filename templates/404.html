@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="flat">
+
+    <!-- Canvas for particles animation -->
+    <div id="particles-js"></div>
+
+    <div class="content">
+
+        <div class="content-box">
+
+            <div class="big-content">
+
+                <!-- Main squares for the content logo in the background -->
+                <div class="list-square">
+                    <span class="square"></span>
+                    <span class="square"></span>
+                    <span class="square"></span>
+                </div>
+
+                <!-- Main lines for the content logo in the background -->
+                <div class="list-line">
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                    <span class="line"></span>
+                </div>
+
+                <!-- The animated searching tool -->
+                <i class="fa fa-search" aria-hidden="true"></i>
+
+                <!-- div clearing the float -->
+                <div class="clear"></div>
+
+            </div>
+
+            <!-- Your text -->
+            <h1>Oops! Error 404 not found.</h1>
+
+            <p>The page you were looking for doesn't exist.<br>
+               We think the page may have moved.</p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ///////////////////\\\\\\\\\\\\\\\\\\\ -->
+    <!-- ********** jQuery Resources ********** -->
+    <!-- \\\\\\\\\\\\\\\\\\\/////////////////// -->
+
+    <!-- * Libraries jQuery and Bootstrap - Be careful to not remove them * -->
+    <script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+
+    <!-- Particles plugin -->
+    <script src="{{ url_for('static', filename='js/particles.js') }}"></script>
+
+</div>
+{% endblock %}
+

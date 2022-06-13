@@ -14,6 +14,7 @@ login = LoginManager(app)  # подключаем функцию логиров�
 
 from routes import *
 from models import *
+from errors import *
 
 
 if __name__ == '__main__':
