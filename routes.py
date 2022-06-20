@@ -20,7 +20,7 @@ def main_page():
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main_page'))
-    posts = Post.query.all()
+    posts = Post.query.order_by(Post.published.desc()).all()
     return render_template('index.html', form=form, posts=posts)
 
 
@@ -79,7 +79,7 @@ def support():
 @login_required
 def user(username):
     user = User.query.filter_by(username=username).first_or_404()
-    posts = {}
+    posts = Post.query.filter_by(user_id=user.id).order_by(Post.published.desc())
     return render_template('user.html', user=user, posts=posts)
 
 
